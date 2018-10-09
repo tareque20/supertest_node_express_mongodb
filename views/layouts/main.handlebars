@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Super Test</title>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Super Test</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                {{#if user}}
+                    <a class="nav-link" href="/">Dashboard</a>
+                    <a class="nav-link" href="/users/logout">Logout</a>
+                {{else}}
+                    <a class="nav-link" href="/users/login">Login</a>
+                    <a class="nav-link" href="/users/register">Register</a>
+                {{/if}}
+
+
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>@copy; Tasfin - Super Test</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
