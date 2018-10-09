@@ -18,6 +18,7 @@ var db = mongoose.connection;
 
 var routers = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 // view engine
 app.set("views", path.join(__dirname, 'views'));
@@ -61,6 +62,7 @@ app.use(function (req, res, next) {
 // set routes
 app.use('/', routers);
 app.use('/users', users);
+app.use('/api', api);
 
 // set port
 app.set('port', (process.env.PORT || 3000));
@@ -68,3 +70,5 @@ app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), function () {
     console.log('Server started on port '+app.get('port')+'...');
 });
+
+module.exports = app;
