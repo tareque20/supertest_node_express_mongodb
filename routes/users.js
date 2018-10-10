@@ -1,109 +1,32 @@
 var express = require('express');
-var Joi = require('joi');
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
 
-var User = require('../models/user');
-
-// Register
-router.get('/register', function (req, res) {
-    res.render('register');
+/**
+ * get all users
+ */
+router.get('/api/users', function (req, res, next) {
+    return res.json('all users sent');
 });
 
-// Login
-router.get('/login', function (req, res) {
-    res.render('login');
-});
-
-// dashboard
-router.get('/dashboard', function (req, res) {
-    res.render('dashboard');
-});
-
-// Register
-router.post('/register', function (req, res) {
-    var name = req.body.name;
-    //var email = req.body.email;
-    var username = req.body.username;
-    var password = req.body.password;
-    var confpassword = req.body.confpassword;
-
-    const schema = {
-        name: Joi.string().min(3).required(),
-        //email: Joi.string().min(3),
-        username: Joi.string().min(3).required(),
-        password: Joi.string().min(3).required(),
-        confpassword: Joi.string().min(3).required(),
-    };
-
-    const result = Joi.validate(req.body, schema);
-    if(result.error){
-        res.render('register', {
-            errors: result.error.details[0].message
-        });
+/**
+ * Get a specific user
+ */
+router.get('/api/users/:id', function (req, res, next) {
+    if (req.params.id === 'U001') { // just to demo
+        return res.json("user U001 found");
     }
-    else{
-        var newUser = new User({
-            name: name,
-            //email: email,
-            username: username,
-            password: password
-        });
+    return res.status(404).json('user not found');
+});
 
-        User.createUser(newUser, function (err, user) {
-            if (err) throw err;
-            console.log(user);
-        });
-
-        req.flash('success_msg', 'Registration has been successfully completed');
-        res.redirect('/users/login');
+/**
+ * Add a user
+ */
+router.post('/api/users', function (req, res, next) {
+    let content = req.body;
+    if (content.id) { //just to demo
+        return res.status(201).json("user created");
     }
-
-});
-
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        User.getUserByUsername(username, function (err, user) {
-            if (err) throw err;
-            if (!user) {
-                return done(null, false, { message: 'Unknown User' });
-            }
-
-            User.comparePassword(password, user.password, function (err, isMatch) {
-                if (err) throw err;
-                if (isMatch) {
-                    return done(null, user);
-                } else {
-                    return done(null, false, { message: 'Invalid password' });
-                }
-            });
-        });
-    }));
-
-passport.serializeUser(function (user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-    User.getUserById(id, function (err, user) {
-        done(err, user);
-    });
-});
-
-router.post('/login',
-    passport.authenticate('local', { successRedirect: '/users/dashboard', failureRedirect: '/users/login', failureFlash: true }),
-    function (req, res) {
-    console.log(req);
-        res.redirect('/users/dashboard');
-    });
-
-router.get('/logout', function (req, res) {
-    req.logout();
-
-    req.flash('success_msg', 'You are logged out');
-
-    res.redirect('/users/login');
+    return res.status(400).json('user not created');
 });
 
 module.exports = router;

@@ -3,47 +3,30 @@ var exphbs  = require('express-handlebars');
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
 var bodyParser = require('body-parser');
-var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var Joi = require('joi');
 var path = require('path');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/loginapp');
-var db = mongoose.connection;
-
-var routers = require('./routes/index');
-var users = require('./routes/users');
-var api = require('./routes/api');
-
-// view engine
-app.set("views", path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-// public path
-app.use(express.static(path.join(__dirname, 'public')));
+var indexRoute = require('./routes/index');
+var booksRoutes = require('./routes/books');
+var genresRoutes = require('./routes/genres');
+var usersRoutes = require('./routes/users');
 
 // body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended :false}));
 app.use(cookieParser());
 
-// Express session
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}));
+// public path
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Passport init
-app.use(passport.initialize());
-app.use(passport.session());
-
+// view engine
+app.set("views", path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // connect flash
 app.use(flash());
@@ -51,24 +34,29 @@ app.use(flash());
 // Global variable
 app.use(function (req, res, next) {
     res.locals.testVar = "tasfin";
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    res.locals.user = req.user || null;
+    //res.locals.success_msg = req.flash('success_msg');
+    //res.locals.error_msg = req.flash('error_msg');
+    //res.locals.error = req.flash('error');
     next();
 })
 
+mongoose.connect('mongodb://localhost/nodeapp', { useNewUrlParser: true });
+var db = mongoose.connection;
 
 // set routes
-app.use('/', routers);
-app.use('/users', users);
-app.use('/api', api);
+app.use('/', indexRoute);
+app.use('/', booksRoutes);
+app.use('/', genresRoutes);
+app.use('/', usersRoutes);
 
 // set port
 app.set('port', (process.env.PORT || 3000));
 
-app.listen(app.get('port'), function () {
-    console.log('Server started on port '+app.get('port')+'...');
-});
+if(!module.parent){ 
+    app.listen(app.get('port'), function () {
+        console.log('Server started on port '+app.get('port')+'...');
+    });
+}
+
 
 module.exports = app;

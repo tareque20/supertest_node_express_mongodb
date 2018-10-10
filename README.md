@@ -1,19 +1,25 @@
-# nodejs express mongodb Passport
-Login app example with MongoDB, Joi validation, Handlebar Template Engine, Passport
+# nodejs express mongodb
+RestFull api example with MongoDB, Joi validation, Handlebar Template Engine
 
 # Run Project:
 ```sh
 $ npm init
 $ npm install
 ```
+
+# Install Supertest and Chai
+```sh
+$ npm install supertest chai --save
+```
+# Install Mocha
+```sh
+$ npm install --global mocha
+```
+# Install nodemon
 ```sh
 $ sudo npm install -g nodemon
 ```
-If getting error : [nodemon] Internal watch failed: watch ENOSPC
-```sh
-sudo sysctl fs.inotify.max_user_watches=582222 && sudo sysctl -p
-```
-
+# Run nodemon
 ```sh
 $ nodemon
 ```
@@ -50,9 +56,12 @@ $ mongo --host 127.0.0.1:27017
 ```
 ```sh
 $ show dbs
-$ use loginapp
-$ db.createCollection('users')
-$ db.books.insert({name : "User 1", email : "user1@gmail.com", username : "user1", password : "123"});
+$ use nodeapp
+$ db.createCollection('books')
+$ db.createCollection('genres')
+$ db.genres.insert({name: 'Test name 1'})
+$ db.genres.find().pretty()
+$ db.books.insert({title : "Test title 1", genres : "Suspense", description : "This is for test description 1", author : "auther 1"});
 $ db.books.find().pretty()
 ```
 More info: https://docs.mongodb.com/manual/crud/
@@ -63,11 +72,22 @@ $ sudo service mongod start
 ```
 
 # API Routes:
+Books:
+```sh
+get: /api/books
+get: /api/books/1
+post: /api/books
+put: /api/books/1
+delete: /api/books/1
+```
+
+genres:
 
 ```sh
-get: /
-post: /user/login
-post: /user/register
-get: /user/logout
+get: /api/genres
+get: /api/genres/1
+post: /api/genres
+put: /api/genres/1
+delete: /api/genres/1
 ```
 ### Use postman to test api
