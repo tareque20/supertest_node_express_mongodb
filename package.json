@@ -4,7 +4,8 @@
   "description": "Simple node application",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "nyc --reporter=html --reporter=text mocha",
+     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "body-parser": "*",
@@ -14,6 +15,7 @@
     "express": "*",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "istanbul": "^0.4.5",
     "joi": "^13.3.0",
     "mongoose": "*",
     "supertest": "^3.3.0"
@@ -29,6 +31,8 @@
   },
   "homepage": "https://github.com/tareque20/nodejs-express-mongodb#readme",
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1"
   }
 }
