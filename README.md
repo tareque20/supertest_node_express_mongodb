@@ -5,6 +5,10 @@ RestFull api example with MongoDB, Joi validation, Handlebar Template Engine
 ```sh
 $ npm install
 ```
+# Install Mocha
+```sh
+$ npm install --global mocha
+```
 
 # Install nodemon
 ```sh
