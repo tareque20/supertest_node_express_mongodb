@@ -7,9 +7,9 @@ Book = require('../models/book');
 router.get('/api/books', function (req, res) {
     Book.getBooks(function (err, books) {
         if (err) {
-            return res.status(400).json(err);
+            return res.status(400).json(err.message);
         }
-        console.log(books);
+        //console.log(books);
         return res.status(200).json(books);
         //res.render('books', books);
     });
@@ -18,7 +18,7 @@ router.get('/api/books', function (req, res) {
 router.get('/api/books/:_id', function (req, res) {
     Book.getBookById(req.params._id, function (err, book) {
         if (err) {
-            return res.status(400).json(err);
+            return res.status(400).json(err.message);
         }
         return res.status(200).json(book);
     });
@@ -35,8 +35,8 @@ router.post('/api/books', function (req, res) {
 
     const result = Joi.validate(book, schema);
     if(result.error){
-        console.log(result.error);
-        return res.status(400).json(result.error);
+        //console.log(result.error);
+        return res.status(400).json(result.error.details[0].message);
 
     }
 

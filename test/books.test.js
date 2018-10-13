@@ -39,7 +39,7 @@ describe('GET /api/books/:_id', function () {
             .get('/api/books/idisnonexisting')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(404) //expecting HTTP status code
+            .expect(400) //expecting HTTP status code
             .expect('"book not found"') // expecting content value
             .end((err) => {
                 if (err) return done(err);
