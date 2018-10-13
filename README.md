@@ -3,18 +3,9 @@ RestFull api example with MongoDB, Joi validation, Handlebar Template Engine
 
 # Run Project:
 ```sh
-$ npm init
 $ npm install
 ```
 
-# Install Supertest and Chai
-```sh
-$ npm install supertest chai --save
-```
-# Install Mocha
-```sh
-$ npm install --global mocha
-```
 # Install nodemon
 ```sh
 $ sudo npm install -g nodemon
