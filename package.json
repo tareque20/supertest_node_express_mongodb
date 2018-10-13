@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-express-mongodb",
+  "name": "supertest-nodejs-express-mongodb",
   "version": "1.0.0",
-  "description": "Simple node application",
+  "description": "Testing node applicationaand api using Supertest,mocha and Istanbul",
   "main": "app.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha",
@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tareque20/nodejs-express-mongodb.git"
+    "url": "git+https://github.com/tareque20/supertest_node_express_mongodb"
   },
   "author": "Tasfin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tareque20/nodejs-express-mongodb/issues"
+    "url": "https://github.com/tareque20/supertest_node_express_mongodb/issues"
   },
-  "homepage": "https://github.com/tareque20/nodejs-express-mongodb#readme",
+  "homepage": "https://github.com/tareque20/supertest_node_express_mongodb#readme",
   "devDependencies": {
     "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
