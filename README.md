@@ -1,5 +1,5 @@
 # nodejs express mongodb
-RestFull api example with MongoDB, Joi validation, Handlebar Template Engine
+Testing RestFull api (MongoDB, Joi validation, Handlebar Template Engine) using Supertest, Mocha and Istanbul
 
 # Run Project:
 ```sh
@@ -7,12 +7,12 @@ $ npm install
 ```
 # Install Mocha
 ```sh
-$ npm install --global mocha
+$ npm install --g mocha
 ```
 
 # Install nodemon
 ```sh
-$ sudo npm install -g nodemon
+$ npm install -g nodemon
 ```
 # Run nodemon
 ```sh
