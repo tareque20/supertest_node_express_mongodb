@@ -8,16 +8,16 @@
   },
   "dependencies": {
     "body-parser": "*",
-    "chai": "^4.2.0",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
+    "chai": ">=4.2.0",
+    "connect-flash": ">=0.1.1",
+    "cookie-parser": ">=1.4.3",
     "express": "*",
-    "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.6",
-    "istanbul": "^0.4.5",
-    "joi": "^13.3.0",
+    "express-handlebars": ">=3.0.0",
+    "express-session": ">=1.15.6",
+    "istanbul": ">=0.4.5",
+    "joi": ">=13.3.0",
     "mongoose": "*",
-    "supertest": "^3.3.0"
+    "supertest": ">=3.3.0"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/tareque20/supertest_node_express_mongodb#readme",
   "devDependencies": {
-    "coveralls": "^3.0.2",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1"
+    "coveralls": ">=3.0.2",
+    "mocha": ">=5.2.0",
+    "nyc": ">=13.0.1"
   }
 }
